@@ -2,6 +2,7 @@
 
 use \Bootstrap\Settings;
 use \App\Request\Request;
+use \Bootstrap\Views\view;
 
 
 
@@ -37,5 +38,10 @@ if (! function_exists("get")){
 if (! function_exists("post")){
     function post(string $key = null){
         return Request::post($key);
+    }
+}
+if (! function_exists("view")){
+    function view(string $path, array $data): array{
+        return view::view($path, $data);
     }
 }
