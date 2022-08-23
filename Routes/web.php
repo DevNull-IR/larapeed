@@ -3,10 +3,14 @@
 use Boot\Routes\Route as Routes;
 
 Routes::get("/", function (){
-    return "sdfdsf";
-    return \Bootstrap\Views\view::view("abc", [
+
+
+    return view("abc", [
         "a" => "<a>Ok</a>"
     ]);
+
+
+
 });
 
 

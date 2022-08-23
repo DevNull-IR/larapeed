@@ -146,20 +146,23 @@ class Routes {
                     if ($arrays['type'] == "callback"){
 
                         $data = $arrays['file']();
-                        if (gettype($data) != "array" or gettype($data) != "object"){
+//                        echo gettype($data);
+                            if (gettype($data) == "array"){
+    //                            die($data);
 
-                            die($data);
-                        }
-                        extract($data[1]);
-                        $getFile = file_get_contents($data[0]);
-                        $getFile =  str_replace(["{{", "}}", "{!!", "!!}"], ["<?= htmlspecialchars(", "); ?>", "<?=", "?>"], $getFile);
-                        $filePath = __DIR__ . "/../../storage/app/view/" . rand(11111, 99999) . ".php";
-                        file_put_contents($filePath, $getFile);
-                        require $filePath;
-                        unlink($filePath);
-                        $this->status = false;
+                                extract($data[1]);
+                                $getFile = file_get_contents($data[0]);
+                                $getFile =  str_replace(["{{", "}}", "{!!", "!!}", "@php", "@endphp"], ["<?= htmlspecialchars(", "); ?>", "<?=", "?>", "<?php", "?>"], $getFile);
+                                $filePath = __DIR__ . "/../../storage/app/view/" . rand(11111, 99999) . ".php";
+                                file_put_contents($filePath, $getFile);
+                                require $filePath;
+                                unlink($filePath);
+                                $this->status = false;
 
-                        die();
+                                die();
+                        }else{
+                                die($data);
+                            }
                     }
                 }
             }
@@ -169,9 +172,26 @@ class Routes {
 
             if ($_SERVER['PATH_INFO'] == $arrays['uri']){
                 if (strtolower($_SERVER['REQUEST_METHOD']) == $arrays['method']){
-                    require $arrays['file'];
-                    $this->status = false;
-                    die();
+                    if ($arrays['type'] == "callback"){
+
+                        $data = $arrays['file']();
+                        if (gettype($data) == "array"){
+                            //                            die($data);
+
+                            extract($data[1]);
+                            $getFile = file_get_contents($data[0]);
+                            $getFile =  str_replace(["{{", "}}", "{!!", "!!}", "@php", "@endphp"], ["<?= htmlspecialchars(", "); ?>", "<?=", "?>", "<?php", "?>"], $getFile);
+                            $filePath = __DIR__ . "/../../storage/app/view/" . rand(11111, 99999) . ".php";
+                            file_put_contents($filePath, $getFile);
+                            require $filePath;
+                            unlink($filePath);
+                            $this->status = false;
+
+                            die();
+                        }else{
+                            die($data);
+                        }
+                    }
                 }
             }
         }
