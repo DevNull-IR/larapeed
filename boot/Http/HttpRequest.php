@@ -6,7 +6,7 @@ use App\Exception\RequestException;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 
-class HttpRequestClass
+class HttpRequest
 {
     public const GET_METHOD = 1;
     public const POST_METHOD = 2;
@@ -42,9 +42,9 @@ class HttpRequestClass
 
     /**
      * @param array $Header
-     * @return HttpRequestClass
+     * @return HttpRequest
      */
-    public function setHeader(array $Header): HttpRequestClass
+    public function setHeader(array $Header): HttpRequest
     {
         $this->Header = $Header;
         $this->headerStat = true;
@@ -61,9 +61,9 @@ class HttpRequestClass
 
     /**
      * @param array|object $parameter
-     * @return HttpRequestClass
+     * @return HttpRequest
      */
-    public function setParameter(object|array $parameter): HttpRequestClass
+    public function setParameter(object|array $parameter): HttpRequest
     {
         $this->parameter = array_merge($this->parameter, $parameter);
         $this->params = true;
@@ -94,10 +94,10 @@ class HttpRequestClass
 
     /**
      * @param string $url
-     * @return HttpRequestClass
+     * @return HttpRequest
      * @throws RequestException
      */
-    public function setUrl(string $url): HttpRequestClass
+    public function setUrl(string $url): HttpRequest
     {
         if (filter_var($url, 273)){
             $this->url = $url;
@@ -141,9 +141,9 @@ class HttpRequestClass
 
     /**
      * @param array|object $body
-     * @return HttpRequestClass
+     * @return HttpRequest
      */
-    public function setBody(object|array $body): HttpRequestClass
+    public function setBody(object|array $body): HttpRequest
     {
         $this->body = $body;
         $this->bodyStat = true;
@@ -160,10 +160,10 @@ class HttpRequestClass
 
     /**
      * @param string|int $method
-     * @return HttpRequestClass
+     * @return HttpRequest
      * @throws RequestException
      */
-    public function setMethod(string|int $method): HttpRequestClass
+    public function setMethod(string|int $method): HttpRequest
     {
         if (is_numeric($method)){
             if ($method <= 5 && $method >= 1){

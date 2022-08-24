@@ -1,6 +1,6 @@
 <?php
 
-use Boot\Http\HttpRequestClass as HttpRequest;
+use Boot\Http\HttpRequest as HttpRequest;
 use Boot\Routes\Route as Routes;
 
 

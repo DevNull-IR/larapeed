@@ -10,11 +10,11 @@ use \Exception;
  * @const PUT_METHOD
  * @const HEAD_METHOD
  * @const DELETE_METHOD
- * @method HttpRequestClass setHeader(array $Header)
- * @method HttpRequestClass setParameter(object|array $parameter)
- * @method HttpRequestClass setUrl(string $url)
- * @method HttpRequestClass setBody(object|array $body)
- * @method HttpRequestClass setMethod(string|int $method)
+ * @method HttpRequest setHeader(array $Header)
+ * @method HttpRequest setParameter(object|array $parameter)
+ * @method HttpRequest setUrl(string $url)
+ * @method HttpRequest setBody(object|array $body)
+ * @method HttpRequest setMethod(string|int $method)
  * @method object|array getBody()
  * @method bool|string send()
  * @method array getHeader()
@@ -28,14 +28,14 @@ use \Exception;
  * @method bool isParams()
  * @method bool isSend()
  */
-class HttpRequest
+class HttpRequesta
 {
     /**
      * @throws Exception
      */
     public static function __callStatic($method, $args)
     {
-        $instance = new HttpRequestClass();
+        $instance = new HttpRequest();
         return $instance->$method(...$args);
     }
 }
