@@ -32,6 +32,9 @@ class HttpRequestClass
         }
     }
 
+    /**
+     * @return bool
+     */
     protected function _isCurl(): bool
     {
         return function_exists('curl_version');
@@ -55,11 +58,11 @@ class HttpRequestClass
     {
         return $this->Header;
     }
+
     /**
      * @param array|object $parameter
      * @return HttpRequestClass
      */
-
     public function setParameter(object|array $parameter): HttpRequestClass
     {
         $this->parameter = $parameter;
