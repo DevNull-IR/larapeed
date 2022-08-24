@@ -16,6 +16,8 @@ class Kernel
 
     public static function run()
     {
+        include_once __DIR__ . "/../Helper/consts.php";
+
         include_once __DIR__ . "/../Helper/helper.php";
 
         include_once __DIR__ . "/../../Routes/web.php";

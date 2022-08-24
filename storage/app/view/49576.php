@@ -1,7 +1,7 @@
 ok
-{!! $a !!}
+<?= $a ?>
 
-@php
+<?php
 $a = new \Boot\Http\HttpRequestClass();
 
-@endphp
+?>
